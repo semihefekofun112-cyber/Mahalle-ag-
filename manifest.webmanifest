@@ -1,0 +1,10 @@
+{
+  "name": "Mahalle Ağı",
+  "short_name": "Mahalle Ağı",
+  "description": "Mahallendeki deprem kayıtları, hava durumu ve yerel haberler.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#07191e",
+  "theme_color": "#071b20",
+  "lang": "tr"
+}
