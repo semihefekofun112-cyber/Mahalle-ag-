@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071b20">
+<meta name="description" content="Mahallendeki resmî deprem kayıtlarını, hava durumunu ve yerel haberleri tek ekranda izle.">
+<link rel="manifest" href="./manifest.webmanifest">
+<title>Mahalle Ağı 3.0</title>
+<style>
+:root{color-scheme:dark;--bg:#07191e;--panel:#10272e;--panel2:#15343a;--line:#294850;--text:#eff8f6;--muted:#9fb6b5;--mint:#6be2c2;--amber:#ffd08b;--red:#ff8585;--blue:#9bc9ff;--shadow:0 16px 44px #0003}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#17453e 0,transparent 38%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}.wrap{max-width:1180px;margin:auto;padding:16px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 18px}.brand{display:flex;align-items:center;gap:10px;font-weight:850;font-size:19px}.logo{width:39px;height:39px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,var(--mint),#198f79);color:#05251e;font-size:23px}.version{font-size:11px;color:var(--mint);font-weight:800}.status{font-size:12px;border:1px solid #32665e;border-radius:30px;padding:5px 10px;color:var(--mint);white-space:nowrap}.hero,.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:17px;margin-bottom:14px;box-shadow:var(--shadow)}.hero{padding:23px;background:linear-gradient(130deg,#153b3c,#10272e)}.eyebrow{font-size:11px;letter-spacing:.13em;font-weight:850;color:var(--mint)}h1{font-size:clamp(28px,5vw,43px);line-height:1.08;margin:8px 0}.muted{color:var(--muted)}.hero p{margin:8px 0;color:#bfd0ce}.search{display:grid;grid-template-columns:1fr auto auto;gap:8px;margin-top:17px}.input,.select{min-width:0;width:100%;padding:13px 14px;border:1px solid #42615f;border-radius:12px;background:#071b20;color:var(--text);font:inherit}.btn{border:0;border-radius:12px;background:var(--mint);color:#06251f;font:800 14px system-ui;padding:12px 16px;cursor:pointer}.btn.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}.btn:disabled{opacity:.55;cursor:wait}.hint{font-size:12px;color:var(--muted);margin-top:8px}.chooser{display:none;margin-top:10px}.chooser.show{display:block}.chooser label{font-size:12px;color:var(--muted);display:block;margin-bottom:5px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}.metric{border:1px solid var(--line);border-radius:15px;padding:13px;background:var(--panel2);min-width:0}.metric b{font-size:25px;display:block;line-height:1.3}.metric span{font-size:11px;color:var(--muted)}.metric small{display:block;font-size:11px;color:var(--muted);margin-top:3px}.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(290px,.85fr);gap:14px}.panel h2{margin:0 0 12px;font-size:16px}.map{width:100%;height:340px;border:0;border-radius:12px;background:#17373c}.links{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}.links a,.chip{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:22px;padding:6px 10px;color:var(--text);font-size:12px;text-decoration:none}.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:10px}.chip{cursor:pointer}.chip.active{border-color:var(--mint);color:var(--mint)}.event{border:1px solid var(--line);border-left:4px solid var(--mint);border-radius:12px;padding:12px;background:#0a2026;margin:9px 0}.event.quake{border-left-color:var(--amber)}.event.weather{border-left-color:var(--blue)}.event.news{border-left-color:var(--mint)}.tag{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mint);font-weight:850}.event h3{font-size:14px;margin:5px 0}.event p{font-size:12px;color:var(--muted);margin:4px 0}.meta{display:flex;flex-wrap:wrap;gap:9px;font-size:11px;color:var(--muted)}.meta a{color:var(--mint)}.empty{padding:17px;border:1px dashed var(--line);border-radius:12px;text-align:center;color:var(--muted);font-size:13px}.source-row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}.source-row:last-child{border-bottom:0}.source-row b{font-size:13px}.source-row small{display:block;color:var(--muted);font-size:11px}.source-state{font-size:11px;text-align:right;color:var(--muted);max-width:48%}.source-state.ok{color:var(--mint)}.source-state.warn{color:var(--amber)}.source-state.err{color:var(--red)}.notice{padding:11px;background:#29271f;border:1px solid #665536;color:#f2d6a3;border-radius:12px;font-size:12px;margin-top:12px}.summary{font-size:13px;color:var(--muted);line-height:1.6}.footer{font-size:11px;color:var(--muted);padding:8px 2px 24px}.footer a{color:var(--mint)}.actionrow{display:flex;gap:8px;margin-top:11px}.actionrow .btn{flex:1}.hidden{display:none!important}
+@media(max-width:760px){.wrap{padding:11px}.hero{padding:18px}.search{grid-template-columns:1fr 1fr}.search input{grid-column:1/-1}.search #searchBtn{grid-column:1}.search #locateBtn{grid-column:2}.metrics{gap:6px}.metric{padding:10px}.metric b{font-size:21px}.grid{grid-template-columns:1fr}.map{height:290px}.top{margin-bottom:12px}}
+@media(max-width:380px){.metrics{grid-template-columns:1fr 1fr}.metric:last-child{grid-column:1/-1}.status{font-size:10px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="top"><div class="brand"><div class="logo">⌖</div><div>Mahalle Ağı <span class="version">3.0</span></div></div><div class="status" id="globalStatus">● Hazır</div></header>
+<section class="hero">
+ <div class="eyebrow">MAHALLENİN CANLI DURUM PANOSU</div>
+ <h1>Yakınında neler<br><span style="color:var(--mint)">olup bitiyor?</span></h1>
+ <p>Mahalleni seç. Resmî deprem kayıtlarını, hava durumunu ve yerel haberleri ayrı kaynaklardan kontrol et.</p>
+ <div class="search"><input class="input" id="placeInput" placeholder="Mahalle, ilçe, şehir (örn. Cumhuriyet, Mut, Mersin)" autocomplete="street-address"><button class="btn" id="searchBtn">Konum ara</button><button class="btn secondary" id="locateBtn">Konumum</button></div>
+ <div class="hint" id="searchHint">Arama sonuçlarından doğru mahalleyi seç. Konum izni vermeden de kullanabilirsin.</div>
+ <div class="chooser" id="chooser"><label for="placeChoices">Bulunan konumlar</label><select class="select" id="placeChoices"></select><div class="actionrow"><button class="btn" id="usePlaceBtn">Bu konumu kullan</button></div></div>
+</section>
+<section id="dashboard" class="hidden">
+ <div class="metrics">
+  <div class="metric"><b id="quakeMetric">—</b><span>AFAD deprem kaydı</span><small id="quakeMetricSub">Son 7 gün · 150 km yarıçap</small></div>
+  <div class="metric"><b id="weatherMetric">—</b><span>Anlık hava durumu</span><small id="weatherMetricSub">Open-Meteo</small></div>
+  <div class="metric"><b id="newsMetric">—</b><span>Haber eşleşmesi</span><small id="newsMetricSub">GDELT · Son 7 gün</small></div>
+ </div>
+ <div class="grid">
+  <section>
+   <div class="panel"><h2 id="mapTitle">Mahalle haritası</h2><iframe class="map" id="mapFrame" title="OpenStreetMap mahalle haritası" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><div class="links" id="mapLinks"></div><div class="hint">Harita seçtiğin konumun merkezini gösterir; haberlerin veya deprem kayıtlarının kesin adresi olarak yorumlanmamalıdır.</div></div>
+   <div class="panel"><h2>Yakın çevre akışı</h2><div class="chips" id="filters"><button class="chip active" data-filter="all">Tümü</button><button class="chip" data-filter="quake">Deprem</button><button class="chip" data-filter="weather">Hava</button><button class="chip" data-filter="news">Haber</button></div><div id="feed"><div class="empty">Konum seçildiğinde veriler burada görünecek.</div></div></div>
+  </section>
+  <aside>
+   <div class="panel"><h2>Kaynakların durumu</h2>
+    <div class="source-row"><div><b>AFAD</b><small>Resmî deprem kataloğu</small></div><div class="source-state" id="afadState">Bekleniyor</div></div>
+    <div class="source-row"><div><b>Open-Meteo</b><small>Hava koşulları ve kısa tahmin</small></div><div class="source-state" id="weatherState">Bekleniyor</div></div>
+    <div class="source-row"><div><b>GDELT</b><small>Çevrim içi haber taraması</small></div><div class="source-state" id="newsState">Bekleniyor</div></div>
+    <p class="hint" id="sourceSummary">Her kaynak bağımsız çalışır. Birindeki hata diğer verileri durdurmaz.</p>
+   </div>
+   <div class="panel"><h2>Mahalle özeti</h2><p class="summary" id="summary">Konum seçilmesini bekliyor.</p><div class="actionrow"><button class="btn" id="refreshBtn">Şimdi güncelle</button></div><p class="hint" id="lastUpdate">Otomatik yenileme: 5 dakika. Haber araması daha seyrek yapılır.</p></div>
+   <div class="panel"><h2>Yararlı bağlantılar</h2><div class="links" id="quickLinks"></div><div class="notice">Bu uygulama deprem tahmini veya resmî tehlike uyarısı üretmez. AFAD kayıtları geçmişte gerçekleşmiş depremlerdir; hava tahmini de resmî afet uyarısı değildir. Acil durumda 112 ve yetkili kurumların duyurularını esas al.</div></div>
+  </aside>
+ </div>
+</section>
+<footer class="footer">Mahalle Ağı 3.0 · Kaynaklar: <a href="https://deprem.afad.gov.tr/last-earthquakes.html" target="_blank" rel="noopener">AFAD</a>, <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a>, <a href="https://www.gdeltproject.org/" target="_blank" rel="noopener">GDELT</a>, <a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a>. Haber bulunmaması olay olmadığı anlamına gelmez.</footer>
+</main>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const state = { place:null, quakes:[], news:[], weather:null, filter:'all', timer:null, busy:false, errors:[] };
+const NEWS_COOLDOWN = 10 * 60 * 1000;
+const NEWS_FRESHNESS = 15 * 60 * 1000;
+const toNum = value => { const n = Number(value); return Number.isFinite(n) ? n : null; };
+function setGlobal(text){ $('globalStatus').textContent = '● ' + text; }
+function setSource(id,text,kind=''){ const el=$(id); el.textContent=text; el.className='source-state '+kind; }
+function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+function distanceKm(a,b,c,d){const r=Math.PI/180, dLat=(c-a)*r,dLon=(d-b)*r;const x=Math.sin(dLat/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin(dLon/2)**2;return 6371*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
+function safeUrl(raw){try{const u=new URL(raw);return u.protocol==='https:'?u.href:'#';}catch{return '#';}}
+function placeFromResult(r,input=''){
+ const a=r.address||{};
+ const neighborhood=a.neighbourhood||a.suburb||a.quarter||a.hamlet||a.residential||'';
+ const district=a.city_district||a.town||a.municipality||a.county||'';
+ const city=a.province||a.state||a.city||a.region||'';
+ const pieces=input.split(',').map(x=>x.trim()).filter(Boolean);
+ return {lat:Number(r.lat),lon:Number(r.lon),label:r.display_name||input,neighborhood:neighborhood||pieces[0]||'',district:district||pieces[1]||'',city:city||pieces[2]||'',countryCode:(a.country_code||'').toLowerCase(),address:a};
+}
+async function parseJsonResponse(response, source){
+ const text=await response.text();
+ let data;
+ try{data=JSON.parse(text);}catch(e){const compact=text.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim().slice(0,180);if(!response.ok)throw new Error(source+' HTTP '+response.status+' yanıtı verdi'+(compact?': '+compact:''));throw new Error(source+' geçerli JSON döndürmedi: '+(compact||'Boş yanıt'));}
+ if(!response.ok)throw new Error(data?.message||data?.reason||source+' HTTP '+response.status+' yanıtı verdi.');
+ return data;
+}
+async function geocode(query){
+ const url=new URL('https://nominatim.openstreetmap.org/search');
+ url.search=new URLSearchParams({format:'jsonv2',addressdetails:'1',limit:'6',q:query,'accept-language':'tr'}).toString();
+ const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),12000);
+ try{const res=await fetch(url,{signal:controller.signal,headers:{'Accept':'application/json'}});const data=await parseJsonResponse(res,'Konum servisi');if(!Array.isArray(data)||!data.length)throw new Error('Konum bulunamadı. Mahalle, ilçe ve şehir adını birlikte yaz.');return data;}finally{clearTimeout(timeout);}
+}
+async function reverseGeocode(lat,lon){
+ const url=new URL('https://nominatim.openstreetmap.org/reverse');url.search=new URLSearchParams({format:'jsonv2',lat:String(lat),lon:String(lon),zoom:'16',addressdetails:'1','accept-language':'tr'}).toString();
+ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),10000);
+ try{const res=await fetch(url,{signal:controller.signal,headers:{'Accept':'application/json'}});return await parseJsonResponse(res,'Konum ayrıntısı');}finally{clearTimeout(timeout);}
+}
+function showPlaceChoices(results,query){
+ const select=$('placeChoices');select.innerHTML='';
+ results.forEach((r,i)=>{const opt=document.createElement('option');opt.value=String(i);opt.textContent=r.display_name||('Konum '+(i+1));select.appendChild(opt);});
+ select._results=results;select._query=query;$('chooser').classList.add('show');
+}
+function showMap(p){
+ const deltaLat=.012,deltaLon=.012/Math.max(.25,Math.cos(p.lat*Math.PI/180));
+ const bbox=[p.lon-deltaLon,p.lat-deltaLat,p.lon+deltaLon,p.lat+deltaLat].join(',');
+ $('mapFrame').src='https://www.openstreetmap.org/export/embed.html?bbox='+encodeURIComponent(bbox)+'&layer=mapnik&marker='+encodeURIComponent(p.lat+','+p.lon);
+ $('mapTitle').textContent=(p.neighborhood||p.district||'Seçilen konum')+' haritası';
+ const q=encodeURIComponent(p.label);$('mapLinks').innerHTML='<a target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat='+p.lat+'&mlon='+p.lon+'#map=14/'+p.lat+'/'+p.lon+'">OpenStreetMap’te aç ↗</a><a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+q+'">Google Haritalar ↗</a>';
+ $('quickLinks').innerHTML=[['Hastaneler','hastane'],['Eczaneler','eczane'],['Toplanma alanları','afet toplanma alanı']].map(([label,term])=>'<a target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(term+' '+p.label)+'">'+label+' ↗</a>').join('')+'<a target="_blank" rel="noopener" href="https://news.google.com/search?q='+encodeURIComponent(p.label)+'&hl=tr&gl=TR&ceid=TR%3Atr">Google Haberler’de ara ↗</a>';
+}
+function bboxFor(lat,lon,radiusKm=150){const dLat=radiusKm/111.32;const dLon=radiusKm/(111.32*Math.max(.2,Math.cos(lat*Math.PI/180)));return {minlat:lat-dLat,maxlat:lat+dLat,minlon:lon-dLon,maxlon:lon+dLon};}
+function afadParams(p){const end=new Date(),start=new Date(end.getTime()-7*86400000),b=bboxFor(p.lat,p.lon,150);return new URLSearchParams({start:start.toISOString().slice(0,19),end:end.toISOString().slice(0,19),minlat:b.minlat.toFixed(4),maxlat:b.maxlat.toFixed(4),minlon:b.minlon.toFixed(4),maxlon:b.maxlon.toFixed(4),limit:'1000',format:'json',orderby:'timedesc'});}
+async function getAfad(p){
+ const params=afadParams(p);
+ if(location.protocol==='http:'||location.protocol==='https:'){
+  try{const proxyParams=new URLSearchParams({lat:String(p.lat),lon:String(p.lon),radius:'150'});const res=await fetch('/api/afad?'+proxyParams.toString(),{headers:{'Accept':'application/json'}});if(res.status!==404){const data=await parseJsonResponse(res,'AFAD');return normalizeAfad(data,p);}}
+  catch(err){if(!(err instanceof TypeError))throw err;}
+ }
+ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),15000);
+ try{const res=await fetch('https://deprem.afad.gov.tr/apiv2/event/filter?'+params.toString(),{signal:controller.signal,headers:{'Accept':'application/json'}});return normalizeAfad(await parseJsonResponse(res,'AFAD'),p);}finally{clearTimeout(timeout);}
+}
+function normalizeAfad(data,p){
+ let rows=Array.isArray(data)?data:(Array.isArray(data.events)?data.events:Array.isArray(data.result)?data.result:[]);
+ return rows.map(row=>{const lat=toNum(row.latitude??row.lat),lon=toNum(row.longitude??row.lon),magnitude=toNum(row.magnitude??row.mag);return {id:String(row.eventID??row.eventId??row.id??Math.random()),date:row.date??row.datetime??'',lat,lon,magnitude,depth:toNum(row.depth),place:row.location??row.place??row.district??'Konum bilgisi yok',province:row.province??'',district:row.district??''};})
+ .filter(e=>e.lat!==null&&e.lon!==null&&distanceKm(p.lat,p.lon,e.lat,e.lon)<=155)
+ .sort((a,b)=>new Date(b.date)-new Date(a.date));
+}
+function weatherText(code){const c=Number(code);if(c===0)return'Açık';if(c===1)return'Az bulutlu';if(c===2)return'Parçalı bulutlu';if(c===3)return'Kapalı';if(c===45||c===48)return'Sisli';if([51,53,55,56,57].includes(c))return'Çisenti';if([61,63,65,66,67,80,81,82].includes(c))return'Yağmurlu';if([71,73,75,77,85,86].includes(c))return'Karlı';if([95,96,99].includes(c))return'Gök gürültülü';return'Hava durumu';}
+async function getWeather(p){
+ const url=new URL('https://api.open-meteo.com/v1/forecast');url.search=new URLSearchParams({latitude:String(p.lat),longitude:String(p.lon),current:'temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,wind_gusts_10m',hourly:'precipitation_probability,precipitation,wind_speed_10m',forecast_hours:'6',timezone:'auto'}).toString();
+ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
+ try{const res=await fetch(url,{signal:controller.signal,headers:{'Accept':'application/json'}});const data=await parseJsonResponse(res,'Hava servisi');if(!data.current)throw new Error('Hava servisi güncel koşul döndürmedi.');const probs=data.hourly?.precipitation_probability||[];const rain=data.hourly?.precipitation||[];return {temperature:toNum(data.current.temperature_2m),humidity:toNum(data.current.relative_humidity_2m),precipitation:toNum(data.current.precipitation),code:data.current.weather_code,wind:toNum(data.current.wind_speed_10m),gust:toNum(data.current.wind_gusts_10m),maxRainProbability:probs.length?Math.max(...probs.map(x=>Number(x)||0)):null,nextSixHourRain:rain.reduce((s,x)=>s+(Number(x)||0),0),time:data.current.time,timezone:data.timezone};}finally{clearTimeout(timeout);}
+}
+function makeNewsQuery(p){
+ const tidy=x=>String(x||'').replace(/[\"()]/g,' ').replace(/\s+/g,' ').trim();
+ const neighborhood=tidy(p.neighborhood),district=tidy(p.district),city=tidy(p.city);
+ const locality=[neighborhood,district].filter((x,i,a)=>x.length>2&&a.findIndex(y=>y.toLocaleLowerCase('tr')===x.toLocaleLowerCase('tr'))===i);
+ let query='';
+ // GDELT OR grupları aynı sorguda arar. Yer adlarını tek uzun tam ifadeye çevirmek,
+ // haber metninde sözcükler yan yana geçmediği için gereksiz sıfır sonuç üretebilir.
+ if(locality.length>1)query='('+locality.map(x=>'\"'+x+'\"').join(' OR ')+')';
+ else if(locality.length===1)query='\"'+locality[0]+'\"';
+ else if(city)query='\"'+city+'\"';
+ if(city&&!locality.some(x=>x.toLocaleLowerCase('tr')===city.toLocaleLowerCase('tr')))query+=' \"'+city+'\"';
+ if(!query.trim())query='\"'+tidy(p.label.split(',').slice(0,3).join(' '))+'\"';
+ if(p.countryCode==='tr')query+=' sourcecountry:turkey';
+ return query.trim();
+}
+function makeGdeltUrl(p){
+ const query=makeNewsQuery(p);
+ const url=new URL('https://api.gdeltproject.org/api/v2/doc/doc');url.search=new URLSearchParams({query,mode:'ArtList',format:'json',maxrecords:'40',sort:'DateDesc',timespan:'7d'}).toString();return {url,query};
+}
+function newsCacheKey(p){return 'mahalleagi_news_'+[p.neighborhood,p.district,p.city].join('|').toLocaleLowerCase('tr');}
+function getNewsCache(p){try{const v=JSON.parse(localStorage.getItem(newsCacheKey(p))||'null');return v&&Array.isArray(v.articles)?v:null;}catch{return null;}}
+function saveNewsCache(p,articles,query){try{localStorage.setItem(newsCacheKey(p),JSON.stringify({savedAt:Date.now(),articles,query}));}catch{}}
+async function getNews(p){
+ const cache=getNewsCache(p),now=Date.now();
+ if(cache&&now-cache.savedAt<NEWS_FRESHNESS){return {articles:cache.articles,query:cache.query,cached:true,savedAt:cache.savedAt};}
+ let last=0;try{last=Number(localStorage.getItem('mahalleagi_gdelt_last_request')||0);}catch{}
+ if(now-last<NEWS_COOLDOWN){if(cache)return {articles:cache.articles,query:cache.query,cached:true,savedAt:cache.savedAt,limited:true};throw new Error('Haber servisine çok sık istek gönderilmesini önlemek için bekleme süresi uygulanıyor. Deprem ve hava verileri bundan etkilenmez.');}
+ const {url,query}=makeGdeltUrl(p);try{localStorage.setItem('mahalleagi_gdelt_last_request',String(now));}catch{}
+ let data;
+ if(location.protocol==='http:'||location.protocol==='https:'){
+  try{const proxyUrl=new URL('/api/news',location.origin);proxyUrl.search=new URLSearchParams({neighborhood:p.neighborhood||'',district:p.district||'',city:p.city||'',label:p.label,country:p.countryCode}).toString();const res=await fetch(proxyUrl,{headers:{'Accept':'application/json'}});if(res.status!==404){data=await parseJsonResponse(res,'Haber servisi');if(data.error)throw new Error(data.message||'Haber servisi isteği reddetti.');}}
+  catch(err){if(!(err instanceof TypeError))throw err;}
+ }
+ if(!data){const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),18000);try{const res=await fetch(url,{signal:controller.signal,headers:{'Accept':'application/json'}});data=await parseJsonResponse(res,'GDELT');}finally{clearTimeout(timeout);}}
+ if(!data||!Array.isArray(data.articles))throw new Error('Haber servisi beklenen makale listesini göndermedi.');
+ const articles=data.articles.map(a=>({title:a.title||'Başlıksız haber',url:a.url||'',source:a.domain||a.sourceCountry||'Kaynak belirtilmemiş',date:a.seendate||a.date||''}));saveNewsCache(p,articles,query);return {articles,query,cached:false,savedAt:now};
+}
+function newsCategory(title){const s=String(title||'').toLocaleLowerCase('tr');if(/deprem|yangın|sel|fırtına|heyelan|afet|tahliye|taşkın/.test(s))return'afet';if(/trafik|kaza|yol kap|ulaşım|metro|otobüs/.test(s))return'trafik';if(/su kes|elektrik kes|doğalgaz|altyapı|arıza|kesinti/.test(s))return'altyapi';return'yerel';}
+function formatDate(value){if(!value)return'Tarih belirtilmemiş';let s=String(value);if(/^\d{14}$/.test(s))s=s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8)+'T'+s.slice(8,10)+':'+s.slice(10,12)+':'+s.slice(12,14)+'Z';const d=new Date(s);return Number.isNaN(d.getTime())?s:d.toLocaleString('tr-TR',{dateStyle:'short',timeStyle:'short'});}
+function buildFeed(){
+ const items=[];
+ state.quakes.forEach(q=>items.push({kind:'quake',sortDate:new Date(q.date).getTime()||0,title:'AFAD Deprem · '+(q.place||'Konum bilgisi yok'),detail:(q.magnitude!==null?'Büyüklük '+q.magnitude:'Büyüklük yok')+(q.depth!==null?' · Derinlik '+q.depth+' km':'')+' · Yaklaşık '+Math.round(distanceKm(state.place.lat,state.place.lon,q.lat,q.lon))+' km uzakta',date:q.date,url:'https://deprem.afad.gov.tr/last-earthquakes.html'}));
+ if(state.weather){const w=state.weather;items.push({kind:'weather',sortDate:new Date(w.time).getTime()||Date.now(),title:weatherText(w.code)+' · '+(w.temperature===null?'—':w.temperature+' °C'),detail:'Rüzgâr '+(w.wind??'—')+' km/sa · Sonraki 6 saat yağış toplamı '+w.nextSixHourRain.toFixed(1)+' mm · En yüksek yağış olasılığı '+(w.maxRainProbability??'—')+'%',date:w.time,url:'https://open-meteo.com/'});}
+ state.news.forEach(n=>items.push({kind:'news',sortDate:new Date(n.date).getTime()||0,title:n.title,detail:n.source+' · '+newsCategory(n.title),date:n.date,url:n.url}));
+ items.sort((a,b)=>b.sortDate-a.sortDate);return items;
+}
+function renderFeed(){
+ const all=buildFeed();const filtered=state.filter==='all'?all:all.filter(x=>x.kind===state.filter);const box=$('feed');
+ if(!filtered.length){let message='Bu bölüm için henüz kayıt bulunamadı.';if(state.filter==='news')message='Bu bölgede haber eşleşmesi bulunamadı. Bu, bölgede olay olmadığı anlamına gelmez.';box.innerHTML='<div class="empty">'+escapeHtml(message)+'</div>';return;}
+ box.innerHTML=filtered.map(item=>{const kindName={quake:'AFAD · Deprem',weather:'Hava durumu',news:'Haber'}[item.kind];return '<article class="event '+item.kind+'"><div class="tag">'+kindName+'</div><h3>'+escapeHtml(item.title)+'</h3><p>'+escapeHtml(item.detail)+'</p><div class="meta"><span>'+escapeHtml(formatDate(item.date))+'</span><a target="_blank" rel="noopener" href="'+safeUrl(item.url)+'">Kaynağı aç ↗</a></div></article>';}).join('');
+}
+function updateMetrics(){
+ $('quakeMetric').textContent=state.quakes.length;$('quakeMetricSub').textContent='Son 7 gün · 150 km yarıçap';
+ if(state.weather){$('weatherMetric').textContent=(state.weather.temperature??'—')+'°';$('weatherMetricSub').textContent=weatherText(state.weather.code)+' · Rüzgâr '+(state.weather.wind??'—')+' km/sa';}else{$('weatherMetric').textContent='—';$('weatherMetricSub').textContent='Veri alınamadı';}
+ $('newsMetric').textContent=state.news.length;$('newsMetricSub').textContent='GDELT · Son 7 gün';
+}
+function updateSummary(){
+ if(!state.place)return;const p=state.place,w=state.weather,latest=state.quakes[0];
+ const parts=[];parts.push('<b>'+escapeHtml(p.neighborhood||p.district||p.label.split(',')[0])+'</b> için son 7 gündeki AFAD kataloğu '+state.quakes.length+' deprem kaydı döndürdü (150 km çevre).');
+ if(latest)parts.push('En son yakın kayıt: '+escapeHtml(latest.place)+' · '+escapeHtml(formatDate(latest.date))+'.');
+ if(w)parts.push('Hava: '+escapeHtml(weatherText(w.code))+', '+escapeHtml(w.temperature)+' °C. Önümüzdeki 6 saatte tahmini yağış '+w.nextSixHourRain.toFixed(1)+' mm.');
+ parts.push('Haber aramasında '+state.news.length+' eşleşme var. Haber kapsamı sınırlı olabilir; kaynakları tek tek kontrol et.');
+ $('summary').innerHTML=parts.join(' ');
+}
+async function loadAfad(){try{const data=await getAfad(state.place);state.quakes=data;setSource('afadState',data.length+' kayıt · güncel','ok');}catch(e){setSource('afadState',e.message,'err');state.errors.push('AFAD: '+e.message);}}
+async function loadWeather(){try{state.weather=await getWeather(state.place);setSource('weatherState','Güncel veri alındı','ok');}catch(e){state.weather=null;setSource('weatherState',e.message,'err');state.errors.push('Hava: '+e.message);}}
+async function loadNews(){try{const result=await getNews(state.place);state.news=result.articles;setSource('newsState',result.cached?'Önbellekten gösteriliyor':'Güncel tarama alındı','ok');if(result.limited)setSource('newsState','Bekleme süresi · eski sonuçlar','warn');if(!state.news.length)setSource('newsState','Eşleşen haber yok','warn');}catch(e){setSource('newsState',e.message,'err');state.errors.push('Haber: '+e.message);}}
+async function refreshAll(){if(!state.place||state.busy)return;state.busy=true;state.errors=[];setGlobal('Veriler güncelleniyor');$('refreshBtn').disabled=true;
+ await Promise.allSettled([loadAfad(),loadWeather(),loadNews()]);updateMetrics();renderFeed();updateSummary();$('refreshBtn').disabled=false;state.busy=false;
+ const failed=state.errors.length;setGlobal(failed?'Bazı kaynaklar yanıt vermedi':'Veriler güncel');$('lastUpdate').textContent='Son kontrol: '+new Date().toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})+' · Otomatik yenileme 5 dk; haber sorgusu en fazla 10 dk arayla.';
+ $('sourceSummary').textContent=failed?state.errors.join(' | '):'Üç veri kaynağı ayrı ayrı kontrol edildi. Haber ve hava verileri resmî afet uyarısı değildir.';
+}
+async function applyPlace(raw,input){
+ const p=placeFromResult(raw,input);if(!Number.isFinite(p.lat)||!Number.isFinite(p.lon))throw new Error('Seçilen konumun koordinatları geçersiz.');state.place=p;state.quakes=[];state.news=[];state.weather=null;updateMetrics();renderFeed();$('dashboard').classList.remove('hidden');$('chooser').classList.remove('show');$('searchHint').textContent=p.label;showMap(p);setGlobal('Konum seçildi');await refreshAll();clearInterval(state.timer);state.timer=setInterval(()=>{if(!document.hidden)refreshAll();},5*60*1000);
+}
+$('searchBtn').addEventListener('click',async()=>{const q=$('placeInput').value.trim();if(!q)return;$('searchBtn').disabled=true;setGlobal('Konum aranıyor');$('searchHint').textContent='Harita servisi konum seçeneklerini arıyor…';try{const places=await geocode(q);showPlaceChoices(places,q);if(places.length===1)await applyPlace(places[0],q);else $('searchHint').textContent=places.length+' konum bulundu. Listeden doğru olanı seç.';}catch(e){$('searchHint').textContent=e.message;setGlobal('Konum bulunamadı');}finally{$('searchBtn').disabled=false;}});
+$('placeInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('searchBtn').click();});
+$('usePlaceBtn').addEventListener('click',async()=>{const select=$('placeChoices'),raw=select._results?.[Number(select.value)];if(raw)try{await applyPlace(raw,select._query||$('placeInput').value);}catch(e){$('searchHint').textContent=e.message;}});
+$('locateBtn').addEventListener('click',()=>{if(!navigator.geolocation){$('searchHint').textContent='Bu tarayıcı konum özelliğini desteklemiyor.';return;}setGlobal('Konum alınıyor');navigator.geolocation.getCurrentPosition(async pos=>{let raw={lat:String(pos.coords.latitude),lon:String(pos.coords.longitude),display_name:'Paylaşılan mevcut konum',address:{}};try{raw=await reverseGeocode(pos.coords.latitude,pos.coords.longitude);}catch{}try{await applyPlace(raw,'');}catch(e){$('searchHint').textContent=e.message;}},err=>{$('searchHint').textContent='Konum izni alınamadı. Mahalle adını yazarak arayabilirsin.';setGlobal('Konum izni yok');},{enableHighAccuracy:false,timeout:12000,maximumAge:60000});});
+$('refreshBtn').addEventListener('click',refreshAll);
+$('filters').addEventListener('click',e=>{const f=e.target.dataset.filter;if(!f)return;state.filter=f;document.querySelectorAll('.chip').forEach(b=>b.classList.toggle('active',b.dataset.filter===f));renderFeed();});
+if('serviceWorker' in navigator && (location.protocol==='https:'||location.hostname==='localhost'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+</script>
+</body>
+</html>
